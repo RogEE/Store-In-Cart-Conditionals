@@ -31,7 +31,7 @@ class Store_in_cart_conditionals_ext {
 	public $docs_url		= 'http://rog.ee';
 	public $name			= 'Store: In_Cart Conditionals';
 	public $settings_exist	= 'n';
-	public $version			= '0.0.0';
+	public $version			= '0.1.0';
 	
 	private $EE;
 	
