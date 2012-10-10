@@ -87,6 +87,13 @@ class Store_in_cart_conditionals_ext {
 	public function add_in_cart_conditionals($cart_contents)
 	{
 		
+		if ($this->EE->extensions->last_call)
+		{
+			$cart_contents = $this->EE->extensions->last_call;
+		}
+		
+		// add "in_cart" conditionals
+		
 		$items_in_cart = array();
 		$skus_in_cart = array();
 		
@@ -105,6 +112,12 @@ class Store_in_cart_conditionals_ext {
 		{
 			$cart_contents['store:sku_in_cart:'.$s] = TRUE;
 		}
+		
+		// also, just for fun, add the value of the "update_cart" button
+		
+		$cart_contents["store:update_cart"] = $this->EE->input->post('update_cart');
+		
+		// fire away, fire away.
 		
 		return $cart_contents;
 		
@@ -140,6 +153,11 @@ class Store_in_cart_conditionals_ext {
 		if ($current == '' OR $current == $this->version)
 		{
 			return FALSE;
+		}
+		else
+		{
+			$this->disable_extension();
+			$this->activate_extension();
 		}
 	}	
 	
